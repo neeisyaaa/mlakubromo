@@ -1214,78 +1214,435 @@
             background: linear-gradient(135deg, #FFC100, #FFD700);
         }
 
-        /* Booking Process */
-        .booking-process {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .booking-process h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 60px;
-            color: #333;
-        }
-
-        .booking-process h2 span {
-            color: #FE9C03;
-        }
-
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 900px;
-            margin: 0 auto;
+        /* Cara Pemesanan Section - Card Grid Design */
+        .cara-pemesanan-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
             position: relative;
         }
 
-        .process-steps::before {
+        .cara-pemesanan-section::before {
             content: '';
             position: absolute;
-            top: 50%;
+            top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: #FE9C03;
-            z-index: 1;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23FE9C03" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%23FFC100" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
         }
 
-        .process-step {
-            background: white;
-            border: 3px solid #FE9C03;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: bold;
-            color: #FE9C03;
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
             position: relative;
             z-index: 2;
         }
 
-        .step-info {
-            position: absolute;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            width: 150px;
-        }
-
-        .step-info h4 {
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
             color: #333;
-            margin-bottom: 10px;
-            font-size: 14px;
+            margin-bottom: 20px;
+            position: relative;
         }
 
-        .step-info p {
+        .section-header h2 span {
+            color: #FE9C03;
+            position: relative;
+        }
+
+        .section-header h2 span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, #FE9C03, #FFC100);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
             color: #666;
-            font-size: 12px;
-            line-height: 1.4;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Steps Grid */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Step Cards */
+        .step-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #FE9C03, #FFC100);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(254, 156, 3, 0.15);
+            border-color: rgba(254, 156, 3, 0.2);
+        }
+
+        .step-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Step Icon */
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FE9C03, #FFC100);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(254, 156, 3, 0.3);
+        }
+
+        .step-icon::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px dashed rgba(254, 156, 3, 0.4);
+            border-radius: 50%;
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .step-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        /* Step Number */
+        .step-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(254, 156, 3, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #FE9C03;
+            border: 2px solid rgba(254, 156, 3, 0.2);
+        }
+
+        /* Step Content */
+        .step-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .step-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin-top: 80px;
+            padding: 50px 30px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section h3 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-whatsapp, .btn-packages {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+            color: white;
+        }
+
+        .btn-packages {
+            background: linear-gradient(135deg, #FE9C03, #FFC100);
+            color: white;
+            box-shadow: 0 8px 25px rgba(254, 156, 3, 0.3);
+        }
+
+        .btn-packages:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(254, 156, 3, 0.4);
+            color: white;
+        }
+
+        .btn-whatsapp::before, .btn-packages::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-whatsapp:hover::before, .btn-packages:hover::before {
+            left: 100%;
+        }
+
+        /* Mobile Responsiveness for Card Grid */
+        @media (max-width: 1024px) {
+            .cara-pemesanan-section {
+                padding: 80px 20px;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 25px;
+            }
+
+            .step-card {
+                padding: 35px 25px;
+            }
+
+            .step-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .step-icon i {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cara-pemesanan-section {
+                padding: 60px 15px;
+            }
+
+            .section-header {
+                margin-bottom: 60px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .step-card {
+                padding: 30px 20px;
+            }
+
+            .step-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .step-card p {
+                font-size: 0.9rem;
+            }
+
+            .step-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .step-icon i {
+                font-size: 1.8rem;
+            }
+
+            .step-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+
+            .cta-section {
+                margin-top: 60px;
+                padding: 40px 20px;
+            }
+
+            .cta-section h3 {
+                font-size: 1.8rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .btn-whatsapp, .btn-packages {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cara-pemesanan-section {
+                padding: 40px 10px;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header p {
+                font-size: 0.9rem;
+            }
+
+            .step-card {
+                padding: 25px 15px;
+            }
+
+            .step-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .step-card p {
+                font-size: 0.85rem;
+            }
+
+            .step-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .step-icon i {
+                font-size: 1.5rem;
+            }
+
+            .step-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+                top: 15px;
+                right: 15px;
+            }
+
+            .cta-section {
+                margin-top: 40px;
+                padding: 30px 15px;
+            }
+
+            .cta-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .cta-section p {
+                font-size: 0.9rem;
+            }
+
+            .btn-whatsapp, .btn-packages {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
         }
 
         /* Gallery */
@@ -1366,6 +1723,7 @@
 
         .view-more {
             text-align: center;
+            padding: 60px 0;
         }
 
         .view-more a {
@@ -1955,7 +2313,7 @@
                             </a>
                             <a href="{{ route('riwayattesti') }}" class="dropdown-item">
                                 <i class="fas fa-star"></i>
-                                Testimoni
+                                Riwayat Testimoni
                             </a>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item" onclick="showLogoutModal()">
@@ -2157,46 +2515,49 @@
         </div>
     </section>
 
-    <!-- Booking Process -->
-    <section class="booking-process">
-        <div class="container animate-on-scroll">
-            <h2>Cara <span>Pemesanan</span></h2>
-            <div class="process-steps animate-on-scroll">
-                <div class="process-step">
-                    1
-                    <div class="step-info">
-                        <h4>Mencari Website Kami</h4>
-                        <p>Buka website MlakuBromo.ID dan pilih paket yang sesuai</p>
+    <!-- Cara Pemesanan Section -->
+    <section class="cara-pemesanan-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Cara <span>Pemesanan</span></h2>
+                <p>Ikuti 6 langkah mudah untuk memesan petualangan impian Anda bersama MlakuBromo.ID</p>
+            </div>
+
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card animate-on-scroll" data-step="1">
+                    <div class="step-icon">
+                        <i class="fas fa-globe"></i>
                     </div>
+                    <div class="step-number">01</div>
+                    <h3>Kunjungi Website</h3>
+                    <p>Akses website MlakuBromo.ID dan jelajahi berbagai paket wisata menarik yang tersedia</p>
                 </div>
-                <div class="process-step">
-                    2
-                    <div class="step-info">
-                        <h4>Memilih Tanggal</h4>
-                        <p>Tentukan tanggal keberangkatan yang diinginkan</p>
+
+                <!-- Step 2 -->
+                <div class="step-card animate-on-scroll" data-step="2">
+                    <div class="step-icon">
+                        <i class="fas fa-map-marked-alt"></i>
                     </div>
+                    <div class="step-number">02</div>
+                    <h3>Pilih Paket Trip</h3>
+                    <p>Pilih paket tour sesuai keinginan: Bromo Sunrise, Ijen Blue Fire, atau paket kombinasi</p>
                 </div>
-                <div class="process-step">
-                    3
-                    <div class="step-info">
-                        <h4>Pilih Paket Tour</h4>
-                        <p>Pilih paket sesuai budget dan preferensi Anda</p>
+
+                <!-- Step 3 -->
+                <div class="step-card animate-on-scroll" data-step="3">
+                    <div class="step-icon">
+                        <i class="fas fa-calendar-check"></i>
                     </div>
+                    <div class="step-number">03</div>
+                    <h3>Pilih Tanggal</h3>
+                    <p>Tentukan tanggal keberangkatan yang sesuai dengan jadwal dan preferensi Anda</p>
                 </div>
-                <div class="process-step">
-                    4
-                    <div class="step-info">
-                        <h4>Booking</h4>
-                        <p>Lakukan pembayaran dan konfirmasi booking</p>
-                    </div>
-                </div>
-                <div class="process-step">
-                    5
-                    <div class="step-info">
-                        <h4>Nikmati Trip</h4>
-                        <p>Nikmati perjalanan tak terlupakan bersama kami</p>
-                    </div>
-                </div>
+            </div>
+
+            <!-- View More Section -->
+            <div class="view-more animate-on-scroll">
+                <a href="{{ route('cara-pemesanan') }}">Lihat Langkah Selengkapnya</a>
             </div>
         </div>
     </section>

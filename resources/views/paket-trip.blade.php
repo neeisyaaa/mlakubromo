@@ -2095,7 +2095,7 @@
                             </a>
                             <a href="{{ route('riwayattesti') }}" class="dropdown-item">
                                 <i class="fas fa-star"></i>
-                                Testimoni
+                                Riwayat Testimoni
                             </a>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item" onclick="showLogoutModal()">

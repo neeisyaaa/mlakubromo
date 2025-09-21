@@ -1018,264 +1018,465 @@
             line-height: 1.8;
         }
 
-        /* Cara Pemesanan Section */
+        /* Cara Pemesanan Section - Card Grid Design */
         .cara-pemesanan-section {
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            position: relative;
         }
 
-        .stepper-container {
-            max-width: 1000px;
-            margin: 0 auto;
+        .cara-pemesanan-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23FE9C03" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%23FFC100" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .section-header {
             text-align: center;
-        }
-
-        /* Step Navigation */
-        .step-navigation {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 60px;
-            padding: 0 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .step-circle {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: #999;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 80px;
             position: relative;
             z-index: 2;
         }
 
-        .step-circle.active {
-            background: linear-gradient(135deg, #FE9C03, #FFC100);
-            color: white;
-            transform: scale(1.2);
-            box-shadow: 0 15px 40px rgba(254, 156, 3, 0.4);
-        }
-
-        .step-circle:hover:not(.active) {
-            background: #FE9C03;
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .step-connector {
-            flex: 1;
-            height: 3px;
-            background: #e0e0e0;
-            margin: 0 -5px;
-            border-radius: 2px;
-            transition: all 0.4s ease;
-            max-width: 60px;
-        }
-
-        .step-connector.active {
-            background: linear-gradient(to right, #FE9C03, #FFC100);
-        }
-
-        /* Step Content */
-        .step-content-container {
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 20px;
             position: relative;
-            height: 400px;
-            overflow: hidden;
-            border-radius: 24px;
-            background: white;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(254, 156, 3, 0.08);
         }
 
-        .step-content {
+        .section-header h2 span {
+            color: #FE9C03;
+            position: relative;
+        }
+
+        /* .section-header h2 span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, #FE9C03, #FFC100);
+            border-radius: 2px;
+        } */
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Steps Grid */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Step Cards */
+        .step-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transform: translateX(100px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 60px 40px;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #FE9C03, #FFC100);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(254, 156, 3, 0.15);
+            border-color: rgba(254, 156, 3, 0.2);
+        }
+
+        .step-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Step Icon */
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FE9C03, #FFC100);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(254, 156, 3, 0.3);
+        }
+
+        .step-icon::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px dashed rgba(254, 156, 3, 0.4);
+            border-radius: 50%;
+            animation: rotate 15s linear infinite;
+        }
+
+        .step-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        /* Step Number */
+        .step-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(254, 156, 3, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #FE9C03;
+            border: 2px solid rgba(254, 156, 3, 0.2);
+        }
+
+        /* Step Content */
+        .step-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .step-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Step Features */
+        .step-features {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            gap: 8px;
+        }
+
+        .step-features span {
+            display: flex;
             align-items: center;
-            text-align: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #555;
+            background: rgba(254, 156, 3, 0.05);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(254, 156, 3, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .step-content.active {
-            opacity: 1;
-            transform: translateX(0);
+        .step-features span:hover {
+            background: rgba(254, 156, 3, 0.1);
+            border-color: rgba(254, 156, 3, 0.2);
         }
 
-        .step-content.prev {
-            transform: translateX(-100px);
-        }
-
-        .step-content .icon {
-            font-size: 4.5rem;
+        .step-features span i {
             color: #FE9C03;
-            margin-bottom: 30px;
-            animation: iconFloat 3s ease-in-out infinite;
+            font-size: 0.9rem;
         }
 
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            margin-top: 80px;
+            padding: 50px 30px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .step-content h3 {
-            font-size: 2rem;
-            color: #1a1a1a;
+        .cta-section h3 {
+            font-size: 2.2rem;
             font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.3;
+            color: #333;
+            margin-bottom: 15px;
         }
 
-        .step-content p {
+        .cta-section p {
             font-size: 1.1rem;
             color: #666;
-            line-height: 1.7;
-            max-width: 600px;
-            font-weight: 400;
+            margin-bottom: 35px;
+            line-height: 1.6;
         }
 
-        /* Progress Bar */
-        .progress-bar-container {
-            margin: 40px 0 20px;
-            background: #f0f0f0;
-            height: 6px;
-            border-radius: 3px;
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-whatsapp, .btn-packages {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
             overflow: hidden;
         }
 
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(to right, #FE9C03, #FFC100);
-            border-radius: 3px;
-            transition: width 0.6s ease;
-            width: 0%;
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
         }
 
-        /* Navigation arrows */
-        .step-nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid #FE9C03;
-            color: #FE9C03;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            z-index: 3;
-            backdrop-filter: blur(10px);
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+            color: white;
         }
 
-        .step-nav-btn:hover {
+        .btn-packages {
             background: linear-gradient(135deg, #FE9C03, #FFC100);
             color: white;
-            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 25px rgba(254, 156, 3, 0.3);
         }
 
-        .step-nav-btn.prev {
-            left: 20px;
+        .btn-packages:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(254, 156, 3, 0.4);
+            color: white;
         }
 
-        .step-nav-btn.next {
-            right: 20px;
+        .btn-whatsapp::before, .btn-packages::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
         }
 
-        /* Mobile Responsiveness */
+        .btn-whatsapp:hover::before, .btn-packages:hover::before {
+            left: 100%;
+        }
+
+        /* Mobile Responsiveness for Card Grid */
         @media (max-width: 1024px) {
-            .stepper-container {
-                max-width: 90%;
+            .cara-pemesanan-section {
+                padding: 80px 20px;
             }
 
-            .step-content-container {
-                height: 450px;
+            .section-header h2 {
+                font-size: 2.5rem;
             }
 
-            .step-content {
-                padding: 50px 30px;
+            .steps-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 25px;
+            }
+
+            .step-card {
+                padding: 35px 25px;
+            }
+
+            .step-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .step-icon i {
+                font-size: 2rem;
             }
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 20px 15px;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
+            .cara-pemesanan-section {
+                padding: 60px 15px;
             }
 
-            .step-navigation {
-                padding: 0 10px;
-                gap: 8px;
+            .section-header {
+                margin-bottom: 60px;
             }
 
-            .step-circle {
-                width: 40px;
-                height: 40px;
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .section-header p {
                 font-size: 1rem;
             }
 
-            .step-connector {
-                max-width: 30px;
-                height: 2px;
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
-            .step-content-container {
-                height: 400px;
+            .step-card {
+                padding: 30px 20px;
             }
 
-            .step-content {
-                padding: 40px 25px;
+            .step-card h3 {
+                font-size: 1.3rem;
             }
 
-            .step-content .icon {
-                font-size: 3.5rem;
-                margin-bottom: 25px;
+            .step-card p {
+                font-size: 0.9rem;
             }
 
-            .step-content h3 {
-                font-size: 1.6rem;
-                margin-bottom: 18px;
+            .step-icon {
+                width: 60px;
+                height: 60px;
             }
 
-            .step-content p {
+            .step-icon i {
+                font-size: 1.8rem;
+            }
+
+            .step-number {
+                width: 35px;
+                height: 35px;
                 font-size: 1rem;
             }
 
-            .step-nav-btn {
-                width: 45px;
-                height: 45px;
+            .cta-section {
+                margin-top: 60px;
+                padding: 40px 20px;
+            }
+
+            .cta-section h3 {
+                font-size: 1.8rem;
+            }
+
+            .cta-section p {
                 font-size: 1rem;
             }
 
-            .step-nav-btn.prev {
-                left: 15px;
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
             }
 
-            .step-nav-btn.next {
-                right: 10px;
+            .btn-whatsapp, .btn-packages {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cara-pemesanan-section {
+                padding: 40px 10px;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header p {
+                font-size: 0.9rem;
+            }
+
+            .step-card {
+                padding: 25px 15px;
+            }
+
+            .step-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .step-card p {
+                font-size: 0.85rem;
+            }
+
+            .step-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .step-icon i {
+                font-size: 1.5rem;
+            }
+
+            .step-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+                top: 15px;
+                right: 15px;
+            }
+
+            .step-features span {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .cta-section {
+                margin-top: 40px;
+                padding: 30px 15px;
+            }
+
+            .cta-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .cta-section p {
+                font-size: 0.9rem;
+            }
+
+            .btn-whatsapp, .btn-packages {
+                padding: 12px 25px;
+                font-size: 0.9rem;
             }
         }
 
@@ -1945,7 +2146,7 @@
                             </a>
                             <a href="{{ route('riwayattesti') }}" class="dropdown-item">
                                 <i class="fas fa-star"></i>
-                                Testimoni
+                                Riwayat Testimoni
                             </a>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item" onclick="showLogoutModal()">
@@ -2069,103 +2270,118 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about">
-        <div class="container animate-on-scroll">
-            <h2>Cara <span>Pemesanan</span></h2>
-            <p>Hubungi kami untuk informasi lebih lanjut tentang paket wisata atau konsultasi gratis. Tim kami siap membantu merencanakan petualangan terbaik Anda.</p>
-        </div>
-    </section>
-
-    <!-- Cara Pemesanan -->
-    <div class="cara-pemesanan-section">
-        <div class="stepper-container animate-on-scroll">
-            <!-- Step Navigation -->
-            <div class="step-navigation animate-on-scroll">
-                <div class="step-circle active" data-step="1">1</div>
-                <div class="step-connector active"></div>
-                <div class="step-circle" data-step="2">2</div>
-                <div class="step-connector"></div>
-                <div class="step-circle" data-step="3">3</div>
-                <div class="step-connector"></div>
-                <div class="step-circle" data-step="4">4</div>
-                <div class="step-connector"></div>
-                <div class="step-circle" data-step="5">5</div>
-                <div class="step-connector"></div>
-                <div class="step-circle" data-step="6">6</div>
+        <!-- Cara Pemesanan Section -->
+    <section class="cara-pemesanan-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Cara <span>Pemesanan</span></h2>
+                <p>Ikuti 6 langkah mudah untuk memesan petualangan impian Anda bersama MlakuBromo.ID</p>
             </div>
 
-            <!-- Progress Bar -->
-            <div class="progress-bar-container animate-on-scroll">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-
-            <!-- Step Content Container -->
-            <div class="step-content-container animate-on-scroll">
-                <!-- Navigation Buttons -->
-                <button class="step-nav-btn prev" onclick="previousStep()">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="step-nav-btn next" onclick="nextStep()">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-
+            <div class="steps-grid">
                 <!-- Step 1 -->
-                <div class="step-content active animate-on-scroll" data-step="1">
-                    <div class="icon">
+                <div class="step-card animate-on-scroll" data-step="1">
+                    <div class="step-icon">
                         <i class="fas fa-globe"></i>
                     </div>
-                    <h3>Kunjungi Website MlakuBromo</h3>
-                    <p>Akses website resmi kami di MlakuBromo.id.com untuk melihat semua paket wisata dan destinasi menarik yang tersedia. Jelajahi berbagai pilihan tour yang sesuai dengan keinginan Anda.</p>
+                    <div class="step-number">01</div>
+                    <h3>Kunjungi Website</h3>
+                    <p>Akses website MlakuBromo.ID dan jelajahi berbagai paket wisata menarik yang tersedia</p>
+                    <!-- <div class="step-features">
+                        <span><i class="fas fa-check"></i> Lihat paket wisata</span>
+                        <span><i class="fas fa-check"></i> Galeri destinasi</span>
+                        <span><i class="fas fa-check"></i> Baca testimoni</span>
+                    </div> -->
                 </div>
 
                 <!-- Step 2 -->
-                <div class="step-content" data-step="2">
-                    <div class="icon">
-                        <i class="fas fa-calendar-check"></i>
+                <div class="step-card animate-on-scroll" data-step="2">
+                    <div class="step-icon">
+                        <i class="fas fa-map-marked-alt"></i>
                     </div>
-                    <h3>Pilih Tanggal Keberangkatan</h3>
-                    <p>Tentukan tanggal perjalanan yang sesuai dengan jadwal Anda. Kami menyediakan berbagai slot waktu untuk fleksibilitas maksimal dan memastikan ketersediaan sesuai dengan preferensi Anda.</p>
+                    <div class="step-number">02</div>
+                    <h3>Pilih Paket Trip</h3>
+                    <p>Pilih paket tour sesuai keinginan: Open Trip Bromo, Daily Trip Bromo Sunrise, atau paket lainnya</p>
+                    <!-- <div class="step-features">
+                        <span><i class="fas fa-mountain"></i> Bromo Sunrise</span>
+                        <span><i class="fas fa-fire"></i> Ijen Blue Fire</span>
+                        <span><i class="fas fa-route"></i> Paket Kombinasi</span>
+                    </div> -->
                 </div>
 
                 <!-- Step 3 -->
-                <div class="step-content" data-step="3">
-                    <div class="icon">
-                        <i class="fas fa-map-marked-alt"></i>
+                <div class="step-card animate-on-scroll" data-step="3">
+                    <div class="step-icon">
+                        <i class="fas fa-calendar-check"></i>
                     </div>
-                    <h3>Pilih Paket Tour Favorit</h3>
-                    <p>Jelajahi berbagai paket tour kami mulai dari Bromo Sunrise, Ijen Crater, hingga kombinasi destinasi sesuai budget dan keinginan Anda. Setiap paket dirancang untuk memberikan pengalaman terbaik.</p>
+                    <div class="step-number">03</div>
+                    <h3>Pilih Tanggal</h3>
+                    <p>Tentukan tanggal keberangkatan yang sesuai dengan jadwal dan preferensi Anda</p>
+                    <!-- <div class="step-features">
+                        <span><i class="fas fa-calendar"></i> Cek ketersediaan</span>
+                        <span><i class="fas fa-users"></i> Kapasitas grup</span>
+                        <span><i class="fas fa-clock"></i> Fleksibel waktu</span>
+                    </div> -->
                 </div>
 
                 <!-- Step 4 -->
-                <div class="step-content" data-step="4">
-                    <div class="icon">
-                        <i class="fab fa-whatsapp"></i>
+                <div class="step-card animate-on-scroll" data-step="4">
+                    <div class="step-icon">
+                        <i class="fas fa-clipboard-check"></i>
                     </div>
-                    <h3>Konfirmasi via WhatsApp</h3>
-                    <p>Hubungi tim customer service kami melalui WhatsApp untuk konfirmasi booking, detail perjalanan, dan informasi tambahan. Tim kami siap membantu Anda 24/7 dengan respon yang cepat.</p>
+                    <div class="step-number">04</div>
+                    <h3>Booking & Konfirmasi</h3>
+                    <p>Lakukan booking dan konfirmasi detail perjalanan melalui form booking</p>
+                    <!-- <div class="step-features">
+                        <span><i class="fas fa-file-contract"></i>Form booking</span>
+                        <span><i class="fas fa-file-contract"></i>Riwayat Pemesanan</span>
+                        <span><i class="fas fa-headset"></i> CS 24/7</span>
+                    </div> -->
                 </div>
 
                 <!-- Step 5 -->
-                <div class="step-content" data-step="5">
-                    <div class="icon">
-                        <i class="fas fa-suitcase"></i>
+                <div class="step-card animate-on-scroll" data-step="5">
+                    <div class="step-icon">
+                        <i class="fas fa-credit-card"></i>
                     </div>
-                    <h3>Persiapan Keberangkatan</h3>
-                    <p>Siapkan perlengkapan wisata, dokumen identitas, dan barang pribadi sesuai panduan yang kami berikan. Kami akan memberikan checklist lengkap untuk memastikan perjalanan Anda berjalan lancar.</p>
+                    <div class="step-number">05</div>
+                    <h3>Pembayaran</h3>
+                    <p>Lakukan pembayaran dengan berbagai metode yang tersedia dan aman</p>
+                    <!-- <div class="step-features">
+                        <span><i class="fas fa-university"></i> Transfer Bank</span>
+                        <span><i class="fas fa-mobile-alt"></i> E-Wallet</span>
+                        <span><i class="fas fa-shield-alt"></i> Aman & Terpercaya</span>
+                    </div> -->
                 </div>
 
                 <!-- Step 6 -->
-                <div class="step-content" data-step="6">
-                    <div class="icon">
+                <div class="step-card animate-on-scroll" data-step="6">
+                    <div class="step-icon">
                         <i class="fas fa-star"></i>
                     </div>
-                    <h3>Nikmati Petualangan</h3>
-                    <p>Rasakan pengalaman wisata tak terlupakan dengan guide profesional, fasilitas terbaik, dan layanan prima dari MlakuBromo. Ciptakan kenangan indah yang akan Anda ingat selamanya!</p>
+                    <div class="step-number">06</div>
+                    <h3>Nikmati Trip!</h3>
+                    <p>Rasakan pengalaman wisata tak terlupakan dengan guide profesional dan fasilitas terbaik</p>
+                    <!-- <div class="step-features">
+                        <span><i class="fas fa-user-tie"></i> Guide profesional</span>
+                        <span><i class="fas fa-camera"></i> Spot foto terbaik</span>
+                        <span><i class="fas fa-heart"></i> Kenangan indah</span>
+                    </div> -->
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section animate-on-scroll">
+                <h3>Siap Memulai Petualangan?</h3>
+                <p>Hubungi kami sekarang dan dapatkan penawaran terbaik untuk trip impian Anda!</p>
+                <div class="cta-buttons">
+                    <a href="{{ route('paket-trip') }}" class="btn-packages">
+                        <i class="fas fa-mountain"></i> Lihat Paket
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Gallery -->
     <section class="gallery">
@@ -2717,6 +2933,57 @@
             });
         }
     }
+
+    // ========== STEP CARDS ANIMATION ==========
+    // Add staggered animation for step cards
+    function initStepCards() {
+        const stepCards = document.querySelectorAll('.step-card');
+        
+        // Add intersection observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100); // Stagger animation
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        stepCards.forEach((card, index) => {
+            // Set initial state
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            observer.observe(card);
+        });
+    }
+
+    // Add hover effects for step cards
+    function addStepCardInteractions() {
+        const stepCards = document.querySelectorAll('.step-card');
+        
+        stepCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    }
+
+    // Initialize step cards animations when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        initStepCards();
+        addStepCardInteractions();
+    });
 
 </script>
 </body>

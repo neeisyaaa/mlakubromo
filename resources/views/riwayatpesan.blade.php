@@ -1193,7 +1193,7 @@
             border-radius: 25px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.08);
             padding: 50px;
-            margin-bottom: 40px;
+            margin-bottom: 80px;
             border: 1px solid #f0f0f0;
             position: relative;
             overflow: hidden;
@@ -1338,14 +1338,23 @@
         }
 
         .status-aktif {
-            background: #fff3cd;
-            color: #ff8c00;
-            border: 1px solid #ffeaa7;
+            background: linear-gradient(135deg, #ff8c00, #ffa500);
+            color: white;
         }
 
         .status-selesai {
-            background: #e6f3ff;
-            color: #0066cc;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .status-pending {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+            color: white;
+        }
+
+        .status-payment {
+            background: linear-gradient(135deg, #17a2b8, #007bff);
+            color: white;
         }
 
         .detail-btn {
@@ -1570,6 +1579,524 @@
         .btn-save:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
+        }
+
+        /* Detail Modal Styles */
+        .detail-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .detail-modal-content {
+            background: white;
+            margin: 3% auto;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.4s ease-out;
+        }
+
+        .detail-modal-header {
+            background: linear-gradient(135deg, #ff8c00, #ffa500);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .detail-modal-header h2 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .detail-close {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .detail-close:hover {
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        .detail-modal-body {
+            padding: 30px;
+        }
+
+        /* Status Info Container */
+        .status-info-container {
+            text-align: center;
+        }
+
+        .status-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            color: white;
+        }
+
+        .payment-icon {
+            background: linear-gradient(135deg, #17a2b8, #007bff);
+        }
+
+        .status-info-container h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .status-info-container p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .order-summary h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-bottom: 2px solid #ff8c00;
+            padding-bottom: 8px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item.total {
+            font-weight: bold;
+            font-size: 16px;
+            color: #ff8c00;
+            border-top: 2px solid #ff8c00;
+            padding-top: 12px;
+            margin-top: 10px;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25d366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            margin: 25px 0;
+        }
+
+        .payment-methods h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: #ff8c00;
+            background: rgba(255, 140, 0, 0.05);
+        }
+
+        .payment-option.selected {
+            border-color: #ff8c00;
+            background: rgba(255, 140, 0, 0.1);
+        }
+
+        .payment-option i:first-child {
+            font-size: 20px;
+            color: #666;
+            width: 25px;
+        }
+
+        .payment-option span {
+            flex: 1;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .payment-option i:last-child {
+            color: #999;
+        }
+
+        /* Payment Details */
+        .payment-details {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .bank-info {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .bank-info h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .account-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .account-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .account-item span:first-child {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .account-item span:last-child {
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Upload Section */
+        .upload-section h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover {
+            border-color: #ff8c00;
+            background: rgba(255, 140, 0, 0.05);
+        }
+
+        .upload-area i {
+            font-size: 32px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .upload-area p {
+            color: #666;
+            margin: 10px 0 5px;
+            font-weight: 500;
+        }
+
+        .upload-area small {
+            color: #999;
+        }
+
+        .upload-preview {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .upload-preview img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Payment Actions */
+        .payment-actions {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .submit-payment-btn {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-payment-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+        }
+
+        /* Ticket Container */
+        .ticket-container {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .ticket-header {
+            background: linear-gradient(135deg, #ff8c00, #ffa500);
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ticket-logo img {
+            height: 40px;
+        }
+
+        .ticket-info h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .ticket-info p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+        }
+
+        .ticket-details {
+            padding: 25px;
+        }
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .detail-col h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border-bottom: 2px solid #ff8c00;
+            padding-bottom: 8px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-item .label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .info-item .value {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .info-item .value.success {
+            color: #28a745;
+        }
+
+        /* Ticket QR */
+        .ticket-qr {
+            text-align: center;
+            padding: 25px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            background: white;
+        }
+
+        .qr-code i {
+            font-size: 40px;
+            color: #666;
+        }
+
+        .ticket-qr p {
+            color: #666;
+            margin: 0;
+        }
+
+        /* Ticket Footer */
+        .ticket-footer {
+            padding: 20px 25px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ticket-footer .contact-info {
+            text-align: left;
+        }
+
+        .ticket-footer .contact-info p {
+            margin: 2px 0;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .ticket-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .download-btn, .share-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .download-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .download-btn:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .share-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .share-btn:hover {
+            background: #1e7e34;
+            transform: translateY(-1px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .detail-modal-content {
+                margin: 5% auto;
+                width: 95%;
+            }
+
+            .detail-modal-body {
+                padding: 20px;
+            }
+
+            .detail-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .ticket-footer {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .ticket-actions {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 768px) {
@@ -2338,7 +2865,7 @@
                             </a>
                             <a href="{{ route('riwayattesti') }}" class="dropdown-item">
                                 <i class="fas fa-star"></i>
-                                Testimoni
+                                Riwayat Testimoni
                             </a>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item" onclick="showLogoutModal()">
@@ -2475,7 +3002,7 @@
         <!-- Tabs and Table -->
         <div class="profile-card">
             <div class="tabs">
-                <h3 style="margin: 0; color: #333; font-size: 24px;">Riwayat Pemesanan</h3>
+                <!-- <h3 style="margin: 0; color: #333; font-size: 24px;">Riwayat Pemesanan</h3> -->
                 <div class="sort-dropdown">
                     <span>Terbaru</span>
                     <select>
@@ -2503,6 +3030,7 @@
                 </div>
 
                 <!-- Data Row Cards -->
+                <!-- Status: Menunggu Konfirmasi -->
                 <div class="table-row-card">
                     <div class="table-data-row">
                         <div class="table-data-cell">
@@ -2511,20 +3039,67 @@
                                 <span class="user-name">Kanya Neisya</span>
                             </div>
                         </div>
-                        <div class="table-data-cell">Open Trip</div>
-                        <div class="table-data-cell">12/09/2025</div>
+                        <div class="table-data-cell">Open Trip Bromo</div>
+                        <div class="table-data-cell">15/10/2025</div>
                         <div class="table-data-cell">2 Orang</div>
-                        <div class="table-data-cell">Bank BCA</div>
+                        <div class="table-data-cell">-</div>
                         <div class="table-data-cell">700.000</div>
-                        <div class="table-data-cell"><span class="status-badge status-aktif">Aktif</span></div>
+                        <div class="table-data-cell"><span class="status-badge status-pending">Menunggu Konfirmasi</span></div>
                         <div class="table-data-cell">
-                            <button class="detail-btn" onclick="showOrderDetail(1)">
+                            <button class="detail-btn" onclick="showOrderDetail(1, 'pending')">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
+                <!-- Status: Menunggu Pembayaran -->
+                <div class="table-row-card">
+                    <div class="table-data-row">
+                        <div class="table-data-cell">
+                            <div class="user-info">
+                                <img src="{{ asset('images/profile.png') }}" alt="Kanya Neisya" class="user-avatar">
+                                <span class="user-name">Kanya Neisya</span>
+                            </div>
+                        </div>
+                        <div class="table-data-cell">Daily Trip Bromo</div>
+                        <div class="table-data-cell">20/10/2025</div>
+                        <div class="table-data-cell">3 Orang</div>
+                        <div class="table-data-cell">-</div>
+                        <div class="table-data-cell">1.050.000</div>
+                        <div class="table-data-cell"><span class="status-badge status-payment">Menunggu Pembayaran</span></div>
+                        <div class="table-data-cell">
+                            <button class="detail-btn" onclick="showOrderDetail(2, 'payment')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status: Aktif -->
+                <div class="table-row-card">
+                    <div class="table-data-row">
+                        <div class="table-data-cell">
+                            <div class="user-info">
+                                <img src="{{ asset('images/profile.png') }}" alt="Kanya Neisya" class="user-avatar">
+                                <span class="user-name">Kanya Neisya</span>
+                            </div>
+                        </div>
+                        <div class="table-data-cell">Travel Bromo</div>
+                        <div class="table-data-cell">12/09/2025</div>
+                        <div class="table-data-cell">2 Orang</div>
+                        <div class="table-data-cell">Bank BCA</div>
+                        <div class="table-data-cell">2.000.000</div>
+                        <div class="table-data-cell"><span class="status-badge status-aktif">Aktif</span></div>
+                        <div class="table-data-cell">
+                            <button class="detail-btn" onclick="showOrderDetail(3, 'active')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status: Selesai -->
                 <div class="table-row-card">
                     <div class="table-data-row">
                         <div class="table-data-cell">
@@ -2540,7 +3115,7 @@
                         <div class="table-data-cell">1.750.000</div>
                         <div class="table-data-cell"><span class="status-badge status-selesai">Selesai</span></div>
                         <div class="table-data-cell">
-                            <button class="detail-btn" onclick="showOrderDetail(2)">
+                            <button class="detail-btn" onclick="showOrderDetail(4, 'completed')">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
@@ -2551,7 +3126,6 @@
             <!-- Pagination -->
             <div class="pagination">
                 <button class="page-btn active">1</button>
-                <button class="page-btn">2</button>
             </div>
         </div>
     </div>
@@ -2582,7 +3156,6 @@
                         </div>
                         <div class="info-section">
                             <h4>Detail Pemesanan</h4>
-                            <p><strong>ID Pemesanan:</strong> #MLB-2024-001</p>
                             <p><strong>Tanggal:</strong> 28/07/2025</p>
                             <p><strong>Status:</strong> <span class="status-badge status-selesai">Selesai</span></p>
                         </div>
@@ -2628,6 +3201,249 @@
                         <p><strong>Tanggal Pembayaran:</strong> 28/07/2025</p>
                         <p>Terima kasih telah memilih MlakuBromo.ID</p>
                         <p>Selamat menikmati perjalanan Anda!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Menunggu Konfirmasi -->
+    <div id="pendingModal" class="detail-modal">
+        <div class="detail-modal-content">
+            <div class="detail-modal-header">
+                <h2>Menunggu Konfirmasi</h2>
+                <span class="detail-close" onclick="closePendingModal()">&times;</span>
+            </div>
+            <div class="detail-modal-body">
+                <div class="status-info-container">
+                    <div class="status-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Pemesanan Sedang Diproses</h3>
+                    <p>Pemesanan Anda sedang menunggu konfirmasi dari admin. Kami akan segera memproses dan menghubungi Anda dalam waktu 1x24 jam.</p>
+                    
+                    <div class="order-summary">
+                        <h4>Detail Pemesanan</h4>
+                        <div class="summary-item">
+                            <span>Paket:</span>
+                            <span>Open Trip Bromo</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Tanggal:</span>
+                            <span>15/10/2025</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Jumlah Orang:</span>
+                            <span>2 Orang</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Total Harga:</span>
+                            <span>Rp 700.000</span>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="contact-info">
+                        <p><strong>Butuh bantuan?</strong></p>
+                        <a href="https://wa.me/6282143788855" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Hubungi Admin
+                        </a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Menunggu Pembayaran -->
+    <div id="paymentModal" class="detail-modal">
+        <div class="detail-modal-content">
+            <div class="detail-modal-header">
+                <h2>Menunggu Pembayaran</h2>
+                <span class="detail-close" onclick="closePaymentModal()">&times;</span>
+            </div>
+            <div class="detail-modal-body">
+                <div class="payment-container">
+                    <div class="payment-status">
+                        <div class="status-icon payment-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3>Silakan Lakukan Pembayaran</h3>
+                        <p>Pemesanan Anda telah dikonfirmasi. Silakan pilih metode pembayaran dan lakukan pembayaran untuk menyelesaikan booking.</p>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h4>Detail Pemesanan</h4>
+                        <div class="summary-item">
+                            <span>Paket:</span>
+                            <span>Daily Trip Bromo</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Tanggal:</span>
+                            <span>20/10/2025</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Jumlah Orang:</span>
+                            <span>3 Orang</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total Pembayaran:</span>
+                            <span>Rp 1.050.000</span>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <h4>Pilih Metode Pembayaran</h4>
+                        <div class="payment-options">
+                            <div class="payment-option" onclick="selectPaymentMethod('bca')">
+                                <i class="fas fa-university"></i>
+                                <span>Bank BCA</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="payment-option" onclick="selectPaymentMethod('mandiri')">
+                                <i class="fas fa-university"></i>
+                                <span>Bank Mandiri</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="payment-option" onclick="selectPaymentMethod('dana')">
+                                <i class="fas fa-wallet"></i>
+                                <span>Dana</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                            <div class="payment-option" onclick="selectPaymentMethod('gopay')">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>GoPay</span>
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Details (Hidden by default) -->
+                    <div id="paymentDetails" class="payment-details" style="display: none;">
+                        <div class="bank-info">
+                            <h4>Informasi Rekening</h4>
+                            <div class="account-info">
+                                <div class="account-item">
+                                    <span>Bank:</span>
+                                    <span id="bankName">-</span>
+                                </div>
+                                <div class="account-item">
+                                    <span>No. Rekening:</span>
+                                    <span id="accountNumber">-</span>
+                                </div>
+                                <div class="account-item">
+                                    <span>Atas Nama:</span>
+                                    <span>MlakuBromo.ID</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="upload-section">
+                            <h4>Upload Bukti Pembayaran</h4>
+                            <div class="upload-area" onclick="document.getElementById('paymentProof').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Klik untuk upload bukti pembayaran</p>
+                                <small>Format: JPG, PNG, PDF (Max 5MB)</small>
+                            </div>
+                            <input type="file" id="paymentProof" accept="image/*,.pdf" style="display: none;" onchange="handleFileUpload(this)">
+                            <div id="uploadPreview" class="upload-preview" style="display: none;"></div>
+                        </div>
+                        
+                        <div class="payment-actions">
+                            <button class="submit-payment-btn" onclick="submitPayment()">
+                                <i class="fas fa-check"></i> Konfirmasi Pembayaran
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Aktif (Nota) -->
+    <div id="activeModal" class="detail-modal">
+        <div class="detail-modal-content">
+            <div class="detail-modal-header">
+                <h2>Tiket Perjalanan</h2>
+                <span class="detail-close" onclick="closeActiveModal()">&times;</span>
+            </div>
+            <div class="detail-modal-body">
+                <div class="ticket-container">
+                    <div class="ticket-header">
+                        <div class="ticket-logo">
+                            <img src="{{ asset('images/logo-mlaku.png') }}" alt="MlakuBromo" style="height: 40px;">
+                        </div>
+                        <div class="ticket-info">
+                            <h3>MlakuBromo.ID</h3>
+                            <p>E-Ticket Perjalanan</p>
+                        </div>
+                        <div class="ticket-status">
+                            <span class="status-badge status-aktif">AKTIF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-details">
+                        <div class="detail-row">
+                            <div class="detail-col">
+                                <h4>Informasi Perjalanan</h4>
+                                <div class="info-item">
+                                    <span class="label">Paket:</span>
+                                    <span class="value">Travel Bromo</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Tanggal:</span>
+                                    <span class="value">12/09/2025</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Jumlah Peserta:</span>
+                                    <span class="value">2 Orang</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Meeting Point:</span>
+                                    <span class="value">Stasiun Malang</span>
+                                </div>
+                            </div>
+                            <div class="detail-col">
+                                <h4>Informasi Pembayaran</h4>
+                                <div class="info-item">
+                                    <span class="label">ID Booking:</span>
+                                    <span class="value">#MLB-2024-003</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Total Bayar:</span>
+                                    <span class="value">Rp 2.000.000</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Metode:</span>
+                                    <span class="value">Bank BCA</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Status:</span>
+                                    <span class="value success">LUNAS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-qr">
+                        <div class="qr-code">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <p>Tunjukkan QR Code ini kepada guide</p>
+                    </div>
+                    
+                    <div class="ticket-footer">
+                        <div class="contact-info">
+                            <p><strong>Kontak Darurat:</strong></p>
+                            <p>📞 +62 822-xxxx-xxxx</p>
+                            <p>📧 mlakubromo@gmail.com</p>
+                        </div>
+                        <div class="ticket-actions">
+                            <button class="download-btn" onclick="downloadTicket()">
+                                <i class="fas fa-download"></i> Download PDF
+                            </button>
+                            <button class="share-btn" onclick="shareTicket()">
+                                <i class="fas fa-share"></i> Bagikan
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2687,9 +3503,149 @@
             });
         });
 
-        function showOrderDetail(orderId) {
-            document.getElementById('detailModal').style.display = 'block';
+        function showOrderDetail(orderId, status) {
+            switch(status) {
+                case 'pending':
+                    document.getElementById('pendingModal').style.display = 'block';
+                    break;
+                case 'payment':
+                    document.getElementById('paymentModal').style.display = 'block';
+                    break;
+                case 'active':
+                    document.getElementById('activeModal').style.display = 'block';
+                    break;
+                case 'completed':
+                default:
+                    document.getElementById('detailModal').style.display = 'block';
+                    break;
+            }
             document.body.style.overflow = 'hidden';
+        }
+
+        // Modal functions for different statuses
+        function closePendingModal() {
+            document.getElementById('pendingModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeActiveModal() {
+            document.getElementById('activeModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Payment method selection
+        function selectPaymentMethod(method) {
+            // Remove selected class from all options
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            event.target.closest('.payment-option').classList.add('selected');
+            
+            // Show payment details
+            const paymentDetails = document.getElementById('paymentDetails');
+            const bankName = document.getElementById('bankName');
+            const accountNumber = document.getElementById('accountNumber');
+            
+            paymentDetails.style.display = 'block';
+            
+            switch(method) {
+                case 'bca':
+                    bankName.textContent = 'Bank BCA';
+                    accountNumber.textContent = '1234567890';
+                    break;
+                case 'mandiri':
+                    bankName.textContent = 'Bank Mandiri';
+                    accountNumber.textContent = '9876543210';
+                    break;
+                case 'dana':
+                    bankName.textContent = 'Dana';
+                    accountNumber.textContent = '082143788855';
+                    break;
+                case 'gopay':
+                    bankName.textContent = 'GoPay';
+                    accountNumber.textContent = '082143788855';
+                    break;
+            }
+        }
+
+        // File upload handler
+        function handleFileUpload(input) {
+            const file = input.files[0];
+            const preview = document.getElementById('uploadPreview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = `
+                        <img src="${e.target.result}" alt="Payment Proof">
+                        <p>File: ${file.name}</p>
+                    `;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Submit payment
+        function submitPayment() {
+            const fileInput = document.getElementById('paymentProof');
+            if (!fileInput.files[0]) {
+                alert('Silakan upload bukti pembayaran terlebih dahulu');
+                return;
+            }
+            
+            // Here you would normally send the data to server
+            alert('Bukti pembayaran berhasil dikirim! Admin akan memverifikasi dalam 1x24 jam.');
+            closePaymentModal();
+        }
+
+        // Ticket actions
+        function downloadTicket() {
+            alert('Fitur download tiket akan segera tersedia');
+        }
+
+        function shareTicket() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Tiket MlakuBromo.ID',
+                    text: 'Tiket perjalanan saya ke Bromo',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback for browsers that don't support Web Share API
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link tiket berhasil disalin ke clipboard');
+                });
+            }
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const pendingModal = document.getElementById('pendingModal');
+            const paymentModal = document.getElementById('paymentModal');
+            const activeModal = document.getElementById('activeModal');
+            const detailModal = document.getElementById('detailModal');
+            
+            if (event.target === pendingModal) {
+                closePendingModal();
+            }
+            if (event.target === paymentModal) {
+                closePaymentModal();
+            }
+            if (event.target === activeModal) {
+                closeActiveModal();
+            }
+            if (event.target === detailModal) {
+                closeModal();
+            }
         }
 
         function closeDetailModal() {

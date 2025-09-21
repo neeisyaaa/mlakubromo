@@ -3511,7 +3511,7 @@
                             </a>
                             <a href="{{ route('riwayattesti') }}" class="dropdown-item">
                                 <i class="fas fa-star"></i>
-                                Testimoni
+                                Riwayat Testimoni
                             </a>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item" onclick="showLogoutModal()">
@@ -3717,7 +3717,7 @@
                 </div>
                 
                 <div class="price-content">
-                    <div class="trip-features">
+                    <!-- <div class="trip-features">
                         <div class="feature-item">
                             <i class="fas fa-car"></i>
                             <div class="feature-text">Transport Jeep Bromo & Driver</div>
@@ -3742,7 +3742,7 @@
                             <i class="fas fa-shield-alt"></i>
                             <div class="feature-text">Asuransi Perjalanan</div>
                         </div>
-                    </div>
+                    </div> -->
                     
                     <div class="price-main">
                         <div>
@@ -3769,8 +3769,8 @@
             <div class="destinasi-carousel">
                 <div class="carousel-container">
                     <div class="carousel-track" id="carouselTrack">
-                        <!-- Slide 1: Sunrise Point -->
-                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasiopen/sunrise.jpg') }}')">
+                        <!-- Slide 1: Bromo -->
+                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasitravel/bromo.jpg') }}')">
                             <div class="slide-overlay"></div>
                             <div class="slide-content">
                                 <h3>Sunrise Point Bromo</h3>
@@ -3782,67 +3782,67 @@
                             </div>
                         </div>
 
-                        <!-- Slide 2: Pura Poten -->
-                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasiopen/pura.jpeg') }}')">
+                        <!-- Slide 2: Museum Angkut -->
+                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasitravel/museum.jpg') }}')">
                             <div class="slide-overlay"></div>
                             <div class="slide-content">
-                                <h3>Kawah Bromo & Pura Poten</h3>
-                                <p>Jelajahi kawah aktif Gunung Bromo dan kunjungi Pura Poten yang bersejarah di kaki gunung berapi.</p>
+                                <h3>Museum Angkut</h3>
+                                <p>Jelajahi koleksi kendaraan antik dan modern dari berbagai era di museum transportasi terlengkap di Indonesia.</p>
                                 <div class="slide-features">
-                                    <span><i class="fas fa-fire"></i> Kawah Aktif</span>
-                                    <span><i class="fas fa-place-of-worship"></i> Pura Hindu</span>
+                                    <span><i class="fas fa-car"></i> Koleksi Lengkap</span>
+                                    <span><i class="fas fa-history"></i> Sejarah Transport</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Slide 3: Pasir Berbisik -->
-                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasiopen/pasir.JPG') }}')">
+                        <!-- Slide 3: Jatim Park -->
+                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasitravel/jatim.jpg') }}')">
                             <div class="slide-overlay"></div>
                             <div class="slide-content">
-                                <h3>Pasir Berbisik</h3>
-                                <p>Rasakan sensasi unik berjalan di hamparan pasir vulkanik yang mengeluarkan suara berbisik saat tertiup angin.</p>
+                                <h3>Jatim Park 2</h3>
+                                <p>Nikmati wahana edukatif dan rekreasi dengan berbagai koleksi satwa dan tumbuhan yang menarik untuk keluarga.</p>
                                 <div class="slide-features">
-                                    <span><i class="fas fa-wind"></i> Fenomena Alam</span>
-                                    <span><i class="fas fa-camera"></i> Spot Foto</span>
+                                    <span><i class="fas fa-leaf"></i> Edukatif</span>
+                                    <span><i class="fas fa-users"></i> Family Fun</span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Slide 4: Bukit Teletubbies -->
-                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasiopen/bukit.jpeg') }}')">
+                        <!-- Slide 4: Eco Green Park -->
+                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasitravel/eco.jpg') }}')">
                             <div class="slide-overlay"></div>
                             <div class="slide-content">
-                                <h3>Bukit Teletubbies</h3>
-                                <p>Nikmati pemandangan padang savana hijau yang luas seperti di film Teletubbies dengan udara sejuk pegunungan.</p>
+                                <h3>Eco Green Park</h3>
+                                <p>Taman rekreasi ramah lingkungan dengan berbagai wahana edukatif dan spot foto menarik untuk seluruh keluarga.</p>
                                 <div class="slide-features">
-                                    <span><i class="fas fa-leaf"></i> Savana</span>
+                                    <span><i class="fas fa-leaf"></i> Eco Friendly</span>
+                                    <span><i class="fas fa-camera"></i> Instagramable</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 5: Kebun Apel -->
+                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasitravel/apel.jpg') }}')">
+                            <div class="slide-overlay"></div>
+                            <div class="slide-content">
+                                <h3>Kebun Apel Malang</h3>
+                                <p>Rasakan pengalaman memetik apel langsung dari pohonnya di kebun apel terluas di Malang dengan udara sejuk pegunungan.</p>
+                                <div class="slide-features">
+                                    <span><i class="fas fa-apple-alt"></i> Fresh Apples</span>
+                                    <span><i class="fas fa-leaf"></i> Organic</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 6: Coban Rondo -->
+                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasitravel/coban.jpeg') }}')">
+                            <div class="slide-overlay"></div>
+                            <div class="slide-content">
+                                <h3>Coban Rondo</h3>
+                                <p>Nikmati keindahan air terjun setinggi 84 meter dengan udara sejuk dan pemandangan alam yang memukau di Malang.</p>
+                                <div class="slide-features">
+                                    <span><i class="fas fa-tint"></i> Air Terjun</span>
                                     <span><i class="fas fa-thermometer-half"></i> Sejuk</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Slide 5: Batok -->
-                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasiopen/batok.jpg') }}')">
-                            <div class="slide-overlay"></div>
-                            <div class="slide-content">
-                                <h3>Gunung Batok</h3>
-                                <p>Jelajahi gunung yang tidak aktif dengan pemandangan menakjubkan dan jalur pendakian yang menantang.</p>
-                                <div class="slide-features">
-                                    <span><i class="fas fa-mountain"></i> Gunung Mati</span>
-                                    <span><i class="fas fa-hiking"></i> Trekking</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Slide 6: Widodaren -->
-                        <div class="carousel-slide" style="background-image: url('{{ asset('images/destinasiopen/widodaren.jpg') }}')">
-                            <div class="slide-overlay"></div>
-                            <div class="slide-content">
-                                <h3>Widodaren</h3>
-                                <p>Titik tertinggi untuk menyaksikan panorama lengkap Bromo dengan view 360 derajat yang menakjubkan.</p>
-                                <div class="slide-features">
-                                    <span><i class="fas fa-eye"></i> Panorama</span>
-                                    <span><i class="fas fa-mountain"></i> 2.770 mdpl</span>
                                 </div>
                             </div>
                         </div>

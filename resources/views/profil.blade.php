@@ -966,7 +966,7 @@
 
         /* About Section */
         .about {
-            padding: 80px 0;
+            padding: 60px 0;
             background: white;
             text-align: center;
         }
@@ -992,16 +992,16 @@
         .about_profil {
             padding: 20px 0;
             background: white;
-            text-align: center;
+            text-align: left;
         }
 
-        .about_profil h2 {
-            font-size: 2.5rem;
+        .about_profil h3 {
+            font-size: 2rem;
             margin-bottom: 20px;
             color: #333;
         }
 
-        .about_profil h2 span {
+        .about_profil h3 span {
             color: #FE9C03;
         }
 
@@ -1058,26 +1058,33 @@
 
         .avatar-change-btn {
             position: absolute;
-            bottom: 5px;
-            right: 5px;
-            width: 35px;
-            height: 35px;
+            bottom: 50px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: #ff8c00;
-            border: none;
+            border: 2px solid white;
             color: white;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 12px;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(255, 140, 0, 0.3);
+            box-shadow: 0 3px 10px rgba(255, 140, 0, 0.4);
+            z-index: 2;
         }
 
         .avatar-change-btn:hover {
             background: #e67c00;
             transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.6);
+        }
+
+        .profile-avatar-compact {
+            position: relative;
+            z-index: 1;
         }
 
         .avatar-upload {
@@ -1125,6 +1132,167 @@
         .save-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+        }
+
+        /* Avatar Label Styles */
+        .avatar-label {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .avatar-label span {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .avatar-label small {
+            display: block;
+            color: #666;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        /* Account Section Styles */
+        .account-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .account-subsection {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+        }
+
+        .account-subsection h3 {
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .account-subsection h3 i {
+            color: #ff8c00;
+            font-size: 16px;
+        }
+
+        .account-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: end;
+        }
+
+        .account-form-grid.email-grid {
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .account-form-grid.password-grid {
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .password-grid .form-field:last-child {
+            grid-column: 1 / -1;
+            margin-top: 15px;
+        }
+
+        .section-divider {
+            border: none;
+            border-top: 2px solid #e9ecef;
+            margin: 0;
+        }
+
+        /* Enhanced Form Field Labels */
+        .form-field label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-field label i {
+            color: #ff8c00;
+            font-size: 14px;
+        }
+
+        /* Enhanced Button Styles */
+        .save-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .save-btn i {
+            font-size: 14px;
+        }
+
+        /* Responsive Design for Account Section */
+        @media (max-width: 768px) {
+            .account-form-grid,
+            .account-form-grid.email-grid,
+            .account-form-grid.password-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .password-grid .form-field:last-child {
+                grid-column: 1;
+                margin-top: 20px;
+            }
+
+            .account-subsection {
+                padding: 20px;
+            }
+
+            .account-subsection h3 {
+                font-size: 16px;
+            }
+
+            .profile-form-grid .form-field[style*="grid-column"] {
+                grid-column: 1 / -1 !important;
+            }
+
+            .avatar-change-btn {
+                bottom: 12px;
+                right: 12px;
+                width: 28px;
+                height: 28px;
+                font-size: 11px;
+            }
+        }
+
+        /* Enhanced Profile Header Content */
+        .profile-header-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .profile-avatar-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         .profile-form-grid {
@@ -2191,7 +2359,7 @@
                             </a>
                             <a href="{{ route('riwayattesti') }}" class="dropdown-item">
                                 <i class="fas fa-star"></i>
-                                Testimoni
+                                Riwayat Testimoni
                             </a>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item" onclick="showLogoutModal()">
@@ -2327,9 +2495,10 @@
 
     <div class="profile-section">
         <!-- Profile Header Card -->
+        <!-- Data Diri Section -->
         <section class="about_profil">
             <div class="container animate-on-scroll">
-                <h2>Data <span>Diri</span></h2>
+                <h3>Data <span>Diri</span></h3>
             </div>
         </section>
         <div class="profile-header-card">
@@ -2340,81 +2509,109 @@
                     <button type="button" class="avatar-change-btn" onclick="document.getElementById('avatarUpload').click()">
                         <i class="fas fa-camera"></i>
                     </button>
+                    <div class="avatar-label">
+                        <span>Foto Profil</span>
+                        <small>Klik untuk mengubah</small>
+                    </div>
                 </div>
                 
                 <div class="profile-form-grid">
                     <div class="form-field">
-                        <label>Nama Lengkap</label>
-                        <input type="text" id="displayName" value="Kanya Neisya Maghfira">
+                        <label><i class="fas fa-user"></i> Nama Lengkap</label>
+                        <input type="text" id="displayName" value="Kanya Neisya Maghfira" placeholder="Masukkan nama lengkap">
                     </div>
                     
                     <div class="form-field">
-                        <label>Asal</label>
-                        <input type="text" id="displayLocation" value="Malang">
+                        <label><i class="fas fa-map-marker-alt"></i> Asal</label>
+                        <input type="text" id="displayLocation" value="Malang" placeholder="Masukkan asal daerah">
                     </div>
                     
-                    <div class="form-field">
-                        <label>Email</label>
-                        <input type="email" id="displayEmail" value="kanyamaghfira@gmail.com">
-                    </div>
-                    
-                    <div class="form-field">
-                        <label>Nomor Telepon</label>
+                    <div class="form-field" style="grid-column: 1 / -1;">
+                        <label><i class="fas fa-phone"></i> Nomor Telepon</label>
                         <div class="phone-input">
                             <span class="country-code">+62</span>
-                            <input type="text" id="displayPhone" value="8166733267">
+                            <input type="text" id="displayPhone" value="8166733267" placeholder="Masukkan nomor telepon">
                         </div>
                     </div>
                 </div>
                 
                 <div class="profile-actions">
-                    <button class="save-btn" onclick="saveProfile()">Simpan Profil</button>
+                    <button class="save-btn" onclick="saveDataDiri()">
+                        <i class="fas fa-save"></i> Simpan Data Diri
+                    </button>
                 </div>
             </div>
         </div>
 
+        <!-- Akun Section -->
         <section class="about_profil">
             <div class="container animate-on-scroll">
-                <h2>Akun <span>Saya</span></h2>
+                <h3>Akun <span>Saya</span></h3>
             </div>
         </section>
-        <!-- Password Change Card -->
         <div class="profile-header-card">
-            <h3 style="margin-bottom: 20px; color: #333; font-size: 20px;">Ubah Password</h3>
-            <div class="profile-form-grid">
-                <div class="form-field">
-                    <label>Password Lama</label>
-                    <div class="password-input-wrapper">
-                        <input type="password" id="currentPassword" placeholder="Masukkan password lama">
-                        <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('currentPassword', this)">
-                            <i class="fas fa-eye"></i>
-                        </button>
+            <div class="account-section">
+                <!-- Email Section -->
+                <div class="account-subsection">
+                    <h3><i class="fas fa-envelope"></i> Email Akun</h3>
+                    <div class="account-form-grid email-grid">
+                        <div class="form-field">
+                            <label>Email Saat Ini</label>
+                            <input type="email" id="displayEmail" value="kanyamaghfira@gmail.com" placeholder="Masukkan email">
+                        </div>
+                        <div class="form-field">
+                            <div class="profile-actions">
+                                <button class="save-btn" onclick="updateEmail()">
+                                    <i class="fas fa-envelope"></i> Update Email
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="form-field">
-                    <label>Password Baru</label>
-                    <div class="password-input-wrapper">
-                        <input type="password" id="newPassword" placeholder="Masukkan password baru">
-                        <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('newPassword', this)">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="form-field">
-                    <label>Konfirmasi Password Baru</label>
-                    <div class="password-input-wrapper">
-                        <input type="password" id="confirmPassword" placeholder="Konfirmasi password baru">
-                        <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('confirmPassword', this)">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="form-field">
-                    <div class="profile-actions" style="margin-top: 20px;">
-                        <button class="save-btn" onclick="changePassword()">Ubah Password</button>
+
+                <hr class="section-divider">
+
+                <!-- Password Section -->
+                <div class="account-subsection">
+                    <h3><i class="fas fa-lock"></i> Ubah Password</h3>
+                    <div class="account-form-grid password-grid">
+                        <div class="form-field">
+                            <label>Password Lama</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="currentPassword" placeholder="Masukkan password lama">
+                                <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('currentPassword', this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <label>Password Baru</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="newPassword" placeholder="Masukkan password baru">
+                                <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('newPassword', this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <label>Konfirmasi Password Baru</label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="confirmPassword" placeholder="Konfirmasi password baru">
+                                <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('confirmPassword', this)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <div class="profile-actions">
+                                <button class="save-btn" onclick="changePassword()">
+                                    <i class="fas fa-key"></i> Ubah Password
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2670,22 +2867,57 @@ function previewAvatar(input) {
             }
         }
 
-        function saveProfile() {
+        function saveDataDiri() {
             // Get form values
             const name = document.getElementById('displayName').value;
-            const email = document.getElementById('displayEmail').value;
             const phone = document.getElementById('displayPhone').value;
             const location = document.getElementById('displayLocation').value;
             
             // Validate required fields
-            if (!name || !email || !phone || !location) {
+            if (!name || !phone || !location) {
                 alert('Semua field harus diisi!');
                 return;
             }
             
             // Here you would typically send data to server
             // For now, just show success message
-            alert('Profil berhasil diperbarui!');
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Tersimpan!';
+            btn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = 'linear-gradient(135deg, #ff8c00, #ffa500)';
+            }, 2000);
+        }
+
+        function updateEmail() {
+            const email = document.getElementById('displayEmail').value;
+            
+            // Validate email
+            if (!email) {
+                alert('Email harus diisi!');
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Format email tidak valid!');
+                return;
+            }
+            
+            // Here you would typically send data to server
+            // For now, just show success message
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Email Diperbarui!';
+            btn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = 'linear-gradient(135deg, #ff8c00, #ffa500)';
+            }, 2000);
         }
 
         function togglePasswordVisibility(inputId, button) {

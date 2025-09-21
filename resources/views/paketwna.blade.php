@@ -3511,7 +3511,7 @@
                             </a>
                             <a href="{{ route('riwayattesti') }}" class="dropdown-item">
                                 <i class="fas fa-star"></i>
-                                Testimoni
+                                Riwayat Testimoni
                             </a>
                             <hr class="dropdown-divider">
                             <a href="#" class="dropdown-item" onclick="showLogoutModal()">
@@ -3717,7 +3717,7 @@
                 </div>
                 
                 <div class="price-content">
-                    <div class="trip-features">
+                    <!-- <div class="trip-features">
                         <div class="feature-item">
                             <i class="fas fa-car"></i>
                             <div class="feature-text">Transport Jeep Bromo & Driver</div>
@@ -3742,7 +3742,7 @@
                             <i class="fas fa-shield-alt"></i>
                             <div class="feature-text">Asuransi Perjalanan</div>
                         </div>
-                    </div>
+                    </div> -->
                     
                     <div class="price-main">
                         <div>
