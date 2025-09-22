@@ -1,61 +1,66 @@
 <?php
-// =====================================
-// FILE: routes/web.php
-// =====================================
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
-
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
-    return view('home');
-})->name('home');
+    return view('welcome');
+});
 
-Route::get('/paket-trip', function () {
-    return view('paket-trip');
-})->name('paket-trip');
+// ================= AUTH =================
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/opentrip/{tripName?}', function () {
-    return view('opentrip');
-})->name('opentrip');
+Route::get('/register', [RegisterController::class, 'showRegister'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
 
-Route::get('/dailytrip', function () {
-    return view('dailytrip');
-})->name('dailytrip');
+// ================= GALERY UMUM =================
+Route::get('/galery', [AdminController::class, 'galery'])->name('galery');
 
-Route::get('/travelbromo', function () {
-    return view('travelbromo');
-})->name('travelbromo');
+// ================= ADMIN =================
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
 
-Route::get('/paketwna', function () {
-    return view('paketwna');
-})->name('paketwna');
-    
-Route::get('/cara-pemesanan', function () {
-    return view('carapemesanan');
-})->name('cara-pemesanan');
+    // Dashboard
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/galeri', function () {
-    return view('galeri');
-})->name('galeri');
+    // Paket
+    Route::get('/pesan-paket', [AdminController::class, 'pesanPaket'])->name('pesan-paket');
+    Route::get('/pilihan-paket', [AdminController::class, 'pilihanPaket'])->name('pilihan-paket');
 
-Route::get('/kontak', function () {
-    return view('kontak');
-})->name('kontak');
+    // Galery dalam admin
+    Route::get('/galery', [AdminController::class, 'galery'])->name('galery.admin');
 
-Route::get('/profil', function () {
-    return view('profil');
-})->name('profil');
+    // Cara Pemesanan
+    Route::get('/cara-pemesanan', [AdminController::class, 'caraPemesanan'])->name('cara-pemesanan');
 
-Route::get('/riwayatpesan', function () {
-    return view('riwayatpesan');
-})->name('riwayatpesan');
+    // Kontak
+    Route::get('/kontak', [AdminController::class, 'kontak'])->name('kontak');
 
-Route::get('/riwayattesti', function () {
-    return view('riwayattesti');
-})->name('riwayattesti');
+    // Paket Trip
+    Route::get('/paket-trip', [AdminController::class, 'paketTrip'])->name('paket-trip');
 
-?>
+    // CRUD Users
+    Route::get('/users', [AdminController::class, 'users'])->name('users.index');
+    Route::get('/users/create', [AdminController::class, 'createUser'])->name('users.create');
+    Route::post('/users', [AdminController::class, 'storeUser'])->name('users.store');
+    Route::get('/users/{id}/edit', [AdminController::class, 'editUser'])->name('users.edit');
+    Route::put('/users/{id}', [AdminController::class, 'updateUser'])->name('users.update');
+    Route::delete('/users/{id}', [AdminController::class, 'deleteUser'])->name('users.destroy');
+
+   // Profile
+Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
+Route::put('/profile', [AdminController::class, 'updateProfile'])->name('profile.update');
+
+    // Notifications
+    Route::get('/notifications', [AdminController::class, 'notifications'])->name('notifications');
+
+    // Contacts
+    Route::resource('contacts', ContactController::class);
+});
