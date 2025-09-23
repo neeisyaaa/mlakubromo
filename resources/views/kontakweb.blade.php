@@ -558,7 +558,7 @@
         }
 
         .modal {
-            display: none;
+            display: none; /* will be set to flex when opened */
             position: fixed;
             z-index: 9999;
             left: 0;
@@ -566,27 +566,56 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
         .modal-content {
             background: #f8f9fa;
             padding: 30px;
-            margin: 5% auto;
+            margin: 0 auto;
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             border-radius: 20px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
             max-height: 90vh;
             overflow-y: auto;
         }
 
         .modal-content h3 {
-            text-align: left;
-            margin-bottom: 30px;
-            font-size: 1.8rem;
-            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.9rem;
+            font-weight: 800;
             color: #333;
+        }
+
+        /* Thank you modal enhancements */
+        #thankYouModal .modal-content {
+            text-align: center;
+            padding: 32px 28px;
+            transform: translateY(10px) scale(0.97);
+            opacity: 0;
+            animation: popupIn 220ms ease-out forwards;
+        }
+
+        #thankYouModal .success-emoji {
+            font-size: 40px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        #thankYouModal p {
+            color: #555;
+            margin-top: 8px;
+            margin-bottom: 18px;
+        }
+
+        @keyframes popupIn {
+            0% { opacity: 0; transform: translateY(10px) scale(0.97); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .close {
@@ -1292,7 +1321,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: url('https://images.unsplash.com/photo-1494790108755-2616b612b176?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80') center/cover;
+            background: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') center/cover;
             position: absolute;
             top: -40px;
             left: 50%;
@@ -1302,11 +1331,11 @@
         }
 
         .testimonial-card:nth-child(2) .testimonial-avatar {
-            background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80') center/cover;
+            background: url('https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') center/cover;
         }
 
         .testimonial-card:nth-child(3) .testimonial-avatar {
-            background: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80') center/cover;
+            background: url('https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') center/cover;
         }
 
         .avatar-ring {
@@ -1945,7 +1974,7 @@
             <i class="fab fa-whatsapp"></i>
         </div>
         <div class="contact-title">WhatsApp</div>
-        <div class="contact-info">+62 822-xxxx-xxxx</div>
+        <div class="contact-info">+62 822-3478-4950</div>
         </div>
 
         <div class="contact-card animate-on-scroll" onclick="openInstagram()">
@@ -1984,7 +2013,7 @@
         Kirim <span class="highlight">Testimoni</span>
         </h3>
 
-        <form id="testimonialForm  animate-on-scroll">
+        <form id="testimonialForm">
         <div class="form-group">
             <input type="text" class="form-input" name="nama" placeholder="Nama Lengkap" required>
         </div>
@@ -2005,6 +2034,17 @@
         </form>
     </div>
 
+    </div>
+
+    <!-- Modal Terima Kasih Testimoni -->
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeThankYouModal()">&times;</span>
+            <div class="success-emoji">🎉</div>
+            <h3>Terima kasih!</h3>
+            <p>Testimoni Anda telah berhasil dikirim. Kami sangat menghargai masukan Anda.</p>
+            <button class="modallogin-btn" onclick="closeThankYouModal()" style="margin-top:6px; width:auto; padding:12px 20px">Tutup</button>
+        </div>
     </div>
 
     <!-- Map Section -->
@@ -2075,55 +2115,6 @@
         </div>
     </section>
 
-    <!-- Why Choose Us
-    <section class="why-choose" id="why-choose">
-    <div class="container">
-            <div class="why-choose-title">
-                <h2>Mengapa <span class="highlight">Memilih</span> Kami ?</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>Berpengalaman & Terpercaya</h4>
-                    <p>Lebih dari 5 tahun pengalaman melayani ribuan wisatawan dengan tingkat kepuasan tinggi dan review positif.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h4>Pemesanan Mudah & Cepat</h4>
-                    <p>Sistem pemesanan online yang mudah dan respon cepat 24 jam. Booking dapat dilakukan kapan saja.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h4>Lokasi</h4>
-                    <p>Strategis berada di lokasi yang mudah dijangkau dengan akses langsung ke berbagai destinasi wisata.</p>
-                </div>
-            </div>
-            <div class="bottom-features">
-                <div class="bottom-feature">
-                    <i class="fas fa-shipping-fast"></i>
-                    <h5>Respon Cepat 24 Jam</h5>
-                    <p>Tim kami siap memberikan respon dalam hitungan menit untuk semua pertanyaan dan kebutuhan Anda.</p>
-                </div>
-                <div class="bottom-feature">
-                    <i class="fas fa-smile"></i>
-                    <h5>Nyaman & Aman</h5>
-                    <p>Armada berkualitas, asuransi perjalanan, dan tim berpengalaman menjamin kenyamanan dan keamanan trip Anda.</p>
-                </div>
-                <div class="bottom-feature">
-                    <i class="fas fa-hand-holding-usd"></i>
-                    <h5>Harga Terjangkau</h5>
-                    <p>Harga kompetitif dengan kualitas pelayanan terbaik. Dapatkan pengalaman premium dengan budget yang reasonable.</p>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <!-- Footer -->
     <footer class="footer" id="kontak">
         <div class="container">
@@ -2134,10 +2125,10 @@
                 </div>
                 <div class="footer-section">
                     <h4>Paket Trip</h4>
-                    <a href="#" onclick="scrollToPackages()">Open Trip Bromo Sunrise</a>
-                    <a href="#" onclick="scrollToPackages()">Private Trip Bromo</a>
-                    <a href="#" onclick="scrollToPackages()">Paket Bromo Ijen</a>
-                    <a href="#" onclick="scrollToPackages()">Open Trip Sewu</a>
+                    <a href="{{ route('opentrip') }}" onclick="scrollToPackages()">Open Trip Bromo</a>
+                    <a href="{{ route('dailytrip') }}" onclick="scrollToPackages()">Daily Trip Bromo Sunrise</a>
+                    <a href="{{ route('travelbromo') }}" onclick="scrollToPackages()">Travel to Malang Bromo</a>
+                    <a href="{{ route('paketwna') }}" onclick="scrollToPackages()">Paket Bromo Ijen WNA</a>
                 </div>
                 <div class="footer-section">
                     <h4>Kontak</h4>
@@ -2229,6 +2220,42 @@
             document.getElementById('loginError').innerText = data.message || 'Login gagal';
         }
     });
+
+    // Submit Testimonial - show Thank You modal
+    (function(){
+        const form = document.getElementById('testimonialForm');
+        if (!form) return;
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            // Require login before allowing testimonial submission
+            const isLoggedIn = {{ auth()->check() ? 'true' : 'false' }};
+            if (isLoggedIn) {
+                // TODO: Integrate with backend when endpoint is ready
+                // For now, show thank you modal and reset form
+                openThankYouModal();
+                form.reset();
+            } else {
+                showLoginModal();
+            }
+        });
+
+        window.openThankYouModal = function(){
+            const modal = document.getElementById('thankYouModal');
+            if (modal) modal.style.display = 'flex';
+        }
+        window.closeThankYouModal = function(){
+            const modal = document.getElementById('thankYouModal');
+            if (modal) modal.style.display = 'none';
+        }
+    })();
+
+    // Show login modal (reused by testimonial submit guard)
+    function showLoginModal() {
+        const modal = document.getElementById('loginModal');
+        if (modal) {
+            modal.style.display = 'block';
+        }
+    }
 
     // AJAX Register
     document.getElementById('registerForm').addEventListener('submit', async function(e) {
@@ -2341,6 +2368,7 @@
         const logoutModal = document.getElementById('logoutModal');
         const loginModal = document.getElementById('loginModal');
         const registerModal = document.getElementById('registerModal');
+        const thankYouModal = document.getElementById('thankYouModal');
         
         if (event.target === logoutModal) {
             closeLogoutModal();
@@ -2350,6 +2378,9 @@
         }
         if (event.target === registerModal) {
             registerModal.style.display = 'none';
+        }
+        if (event.target === thankYouModal) {
+            closeThankYouModal();
         }
     }
 
@@ -2363,11 +2394,15 @@
             
             const loginModal = document.getElementById('loginModal');
             const registerModal = document.getElementById('registerModal');
+            const thankYouModal = document.getElementById('thankYouModal');
             if (loginModal.style.display === 'block') {
                 loginModal.style.display = 'none';
             }
             if (registerModal.style.display === 'block') {
                 registerModal.style.display = 'none';
+            }
+            if (thankYouModal && thankYouModal.style.display === 'block') {
+                closeThankYouModal();
             }
         }
     });
@@ -2475,24 +2510,53 @@
     });
 
     // Search functionality
-    document.getElementById('searchInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            const searchTerm = this.value;
-            if (searchTerm) {
-                alert(`Mencari: ${searchTerm}`);
+    (function(){
+        const routes = {
+            home: "{{ route('home') }}",
+            kontak: "{{ route('kontak') }}",
+            opentrip: "{{ route('opentrip') }}",
+            dailytrip: "{{ route('dailytrip') }}",
+            travelbromo: "{{ route('travelbromo') }}",
+            paketwna: "{{ route('paketwna') }}"
+        };
+
+        function handleSearch(termRaw){
+            const term = (termRaw || '').toString().toLowerCase().trim();
+            if (!term) {
+                if (typeof scrollToPackages === 'function') {
+                    scrollToPackages();
+                }
+                return;
+            }
+            const go = (url) => { window.location.href = url; };
+            if (/(open\s*trip|opentrip|bromo(?!\s*ijen))/i.test(term)) return go(routes.opentrip);
+            if (/(daily|sunrise|daily\s*trip)/i.test(term)) return go(routes.dailytrip);
+            if (/(travel|malang|travel\s*bromo)/i.test(term)) return go(routes.travelbromo);
+            if (/(wna|ijen|bromo\s*ijen|foreigner|mancanegara)/i.test(term)) return go(routes.paketwna);
+            if (/(kontak|contact|hubungi)/i.test(term)) return go(routes.kontak);
+            if (typeof scrollToPackages === 'function') {
+                scrollToPackages();
+            } else {
+                go(routes.home);
             }
         }
-    });
 
-    // Add click event to search button
-    document.querySelector('.search-btn').addEventListener('click', function() {
-        const searchInput = document.getElementById('searchInput');
-        const searchTerm = searchInput.value;
-        if (searchTerm) {
-            alert(`Mencari paket trip: ${searchTerm}`);
-            scrollToPackages();
+        const input = document.getElementById('searchInput');
+        if (input) {
+            input.addEventListener('keypress', function(e){
+                if (e.key === 'Enter') {
+                    handleSearch(this.value);
+                }
+            });
         }
-    });
+        const icon = document.querySelector('.search-box i.fas.fa-search');
+        if (icon) {
+            icon.style.cursor = 'pointer';
+            icon.addEventListener('click', function(){
+                handleSearch(input ? input.value : '');
+            });
+        }
+    })();
 
     // Interactive hover effects for cards
     document.querySelectorAll('.package-card, .feature-card, .testimonial-card, .bottom-feature').forEach(card => {

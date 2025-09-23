@@ -4273,10 +4273,10 @@
                 </div>
                 <div class="footer-section">
                     <h4>Paket Trip</h4>
-                    <a href="#" onclick="scrollToPackages()">Open Trip Bromo Sunrise</a>
-                    <a href="#" onclick="scrollToPackages()">Private Trip Bromo</a>
-                    <a href="#" onclick="scrollToPackages()">Paket Bromo Ijen</a>
-                    <a href="#" onclick="scrollToPackages()">Open Trip Sewu</a>
+                    <a href="{{ route('opentrip') }}" onclick="scrollToPackages()">Open Trip Bromo</a>
+                    <a href="{{ route('dailytrip') }}" onclick="scrollToPackages()">Daily Trip Bromo Sunrise</a>
+                    <a href="{{ route('travelbromo') }}" onclick="scrollToPackages()">Travel to Malang Bromo</a>
+                    <a href="{{ route('paketwna') }}" onclick="scrollToPackages()">Paket Bromo Ijen WNA</a>
                 </div>
                 <div class="footer-section">
                     <h4>Kontak</h4>
@@ -5174,6 +5174,46 @@
                 showSlide(currentSlideIndex);
             });
         });
+
+        // Search functionality
+        (function(){
+            const routes = {
+                home: "{{ route('home') }}",
+                kontak: "{{ route('kontak') }}",
+                opentrip: "{{ route('opentrip') }}",
+                dailytrip: "{{ route('dailytrip') }}",
+                travelbromo: "{{ route('travelbromo') }}",
+                paketwna: "{{ route('paketwna') }}"
+            };
+
+            function handleSearch(termRaw){
+                const term = (termRaw || '').toString().toLowerCase().trim();
+                if (!term) return;
+                const go = (url) => { window.location.href = url; };
+                if (/(open\s*trip|opentrip|bromo(?!\s*ijen))/i.test(term)) return go(routes.opentrip);
+                if (/(daily|sunrise|daily\s*trip)/i.test(term)) return go(routes.dailytrip);
+                if (/(travel|malang|travel\s*bromo)/i.test(term)) return go(routes.travelbromo);
+                if (/(wna|ijen|bromo\s*ijen|foreigner|mancanegara)/i.test(term)) return go(routes.paketwna);
+                if (/(kontak|contact|hubungi)/i.test(term)) return go(routes.kontak);
+                go(routes.home);
+            }
+
+            const input = document.getElementById('searchInput');
+            if (input) {
+                input.addEventListener('keypress', function(e){
+                    if (e.key === 'Enter') {
+                        handleSearch(this.value);
+                    }
+                });
+            }
+            const icon = document.querySelector('.search-box i.fas.fa-search');
+            if (icon) {
+                icon.style.cursor = 'pointer';
+                icon.addEventListener('click', function(){
+                    handleSearch(input ? input.value : '');
+                });
+            }
+        })();
     </script>
 </body>
 </html>

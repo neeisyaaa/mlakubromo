@@ -1565,7 +1565,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: url('https://images.unsplash.com/photo-1494790108755-2616b612b176?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80') center/cover;
+            background: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') center/cover;
             position: absolute;
             top: -40px;
             left: 50%;
@@ -1575,11 +1575,11 @@
         }
 
         .testimonial-card:nth-child(2) .testimonial-avatar {
-            background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80') center/cover;
+            background: url('https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') center/cover;
         }
 
         .testimonial-card:nth-child(3) .testimonial-avatar {
-            background: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80') center/cover;
+            background: url('https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') center/cover;
         }
 
         .avatar-ring {
@@ -2363,10 +2363,10 @@
                 </div>
                 <div class="footer-section">
                     <h4>Paket Trip</h4>
-                    <a href="#" onclick="scrollToPackages()">Open Trip Bromo Sunrise</a>
-                    <a href="#" onclick="scrollToPackages()">Private Trip Bromo</a>
-                    <a href="#" onclick="scrollToPackages()">Paket Bromo Ijen</a>
-                    <a href="#" onclick="scrollToPackages()">Open Trip Sewu</a>
+                    <a href="{{ route('opentrip') }}" onclick="scrollToPackages()">Open Trip Bromo</a>
+                    <a href="{{ route('dailytrip') }}" onclick="scrollToPackages()">Daily Trip Bromo Sunrise</a>
+                    <a href="{{ route('travelbromo') }}" onclick="scrollToPackages()">Travel to Malang Bromo</a>
+                    <a href="{{ route('paketwna') }}" onclick="scrollToPackages()">Paket Bromo Ijen WNA</a>
                 </div>
                 <div class="footer-section">
                     <h4>Kontak</h4>

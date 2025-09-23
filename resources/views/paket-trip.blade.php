@@ -1458,7 +1458,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background: url('https://images.unsplash.com/photo-1494790108755-2616b612b176?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80') center/cover;
+            background: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') center/cover;
             position: absolute;
             top: -40px;
             left: 50%;
@@ -1468,11 +1468,11 @@
         }
 
         .testimonial-card:nth-child(2) .testimonial-avatar {
-            background: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80') center/cover;
+            background: url('https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') center/cover;
         }
 
         .testimonial-card:nth-child(3) .testimonial-avatar {
-            background: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80') center/cover;
+            background: url('https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80') center/cover;
         }
 
         .avatar-ring {
@@ -2565,10 +2565,10 @@
                 </div>
                 <div class="footer-section">
                     <h4>Paket Trip</h4>
-                    <a href="#" onclick="scrollToPackages()">Open Trip Bromo Sunrise</a>
-                    <a href="#" onclick="scrollToPackages()">Private Trip Bromo</a>
-                    <a href="#" onclick="scrollToPackages()">Paket Bromo Ijen</a>
-                    <a href="#" onclick="scrollToPackages()">Open Trip Sewu</a>
+                    <a href="{{ route('opentrip') }}" onclick="scrollToPackages()">Open Trip Bromo</a>
+                    <a href="{{ route('dailytrip') }}" onclick="scrollToPackages()">Daily Trip Bromo Sunrise</a>
+                    <a href="{{ route('travelbromo') }}" onclick="scrollToPackages()">Travel to Malang Bromo</a>
+                    <a href="{{ route('paketwna') }}" onclick="scrollToPackages()">Paket Bromo Ijen WNA</a>
                 </div>
                 <div class="footer-section">
                     <h4>Kontak</h4>
@@ -2937,14 +2937,53 @@
         }
 
         // Search functionality
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const searchTerm = this.value;
-                if (searchTerm) {
-                    alert(`Mencari: ${searchTerm}`);
+        (function(){
+            const routes = {
+                home: "{{ route('home') }}",
+                kontak: "{{ route('kontak') }}",
+                opentrip: "{{ route('opentrip') }}",
+                dailytrip: "{{ route('dailytrip') }}",
+                travelbromo: "{{ route('travelbromo') }}",
+                paketwna: "{{ route('paketwna') }}"
+            };
+
+            function handleSearch(termRaw){
+                const term = (termRaw || '').toString().toLowerCase().trim();
+                if (!term) {
+                    if (typeof scrollToPackages === 'function') {
+                        scrollToPackages();
+                    }
+                    return;
+                }
+                const go = (url) => { window.location.href = url; };
+                if (/(open\s*trip|opentrip|bromo(?!\s*ijen))/i.test(term)) return go(routes.opentrip);
+                if (/(daily|sunrise|daily\s*trip)/i.test(term)) return go(routes.dailytrip);
+                if (/(travel|malang|travel\s*bromo)/i.test(term)) return go(routes.travelbromo);
+                if (/(wna|ijen|bromo\s*ijen|foreigner|mancanegara)/i.test(term)) return go(routes.paketwna);
+                if (/(kontak|contact|hubungi)/i.test(term)) return go(routes.kontak);
+                if (typeof scrollToPackages === 'function') {
+                    scrollToPackages();
+                } else {
+                    go(routes.home);
                 }
             }
-        });
+
+            const input = document.getElementById('searchInput');
+            if (input) {
+                input.addEventListener('keypress', function(e){
+                    if (e.key === 'Enter') {
+                        handleSearch(this.value);
+                    }
+                });
+            }
+            const icon = document.querySelector('.search-box i.fas.fa-search');
+            if (icon) {
+                icon.style.cursor = 'pointer';
+                icon.addEventListener('click', function(){
+                    handleSearch(input ? input.value : '');
+                });
+            }
+        })();
 
         // Social media links
         function openSocialMedia(platform) {

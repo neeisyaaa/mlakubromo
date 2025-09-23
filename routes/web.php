@@ -43,19 +43,21 @@ Route::get('/galeri', function () {
 })->name('galeri');
 
 Route::get('/kontak', function () {
-    return view('kontak');
+    return view('kontakweb');
 })->name('kontak');
 
-Route::get('/profil', function () {
-    return view('profil');
-})->name('profil');
+Route::middleware('auth')->group(function () {
+    Route::get('/profil', function () {
+        return view('profil');
+    })->name('profil');
 
-Route::get('/riwayatpesan', function () {
-    return view('riwayatpesan');
-})->name('riwayatpesan');
+    Route::get('/riwayatpesan', function () {
+        return view('riwayatpesan');
+    })->name('riwayatpesan');
 
-Route::get('/riwayattesti', function () {
-    return view('riwayattesti');
-})->name('riwayattesti');
+    Route::get('/riwayattesti', function () {
+        return view('riwayattesti');
+    })->name('riwayattesti');
+});
 
 ?>
